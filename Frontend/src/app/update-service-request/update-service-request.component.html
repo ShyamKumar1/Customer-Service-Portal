@@ -1,0 +1,42 @@
+
+<div class="login-box">
+  <h2>Update Service Request</h2>
+  <div class="container">
+    <form >
+      <div class="form-group" style="text-align: left;">
+        <label>Service Name</label><br>
+        <input type="text" [(ngModel)]="serviceRequest.serviceName" [ngModelOptions]="{standalone: true}" class="form-control"
+          >
+  
+      </div><br>
+
+      <div class="form-group" style="text-align: left;">
+        <label>Service Details</label><br>
+        <input type="text" [(ngModel)]="serviceRequest.serviceDetails" [ngModelOptions]="{standalone: true}" class="form-control"
+         >
+  
+      </div><br>
+      <div class="form-group" style="text-align: left;">
+        <label>Service Type</label><br>
+        <select class="form-control" [(ngModel)]="serviceRequest.serviceType" [ngModelOptions]="{standalone: true}">
+          <option value="">Select Service Type</option>
+          <option value="Software">Software</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Non-Technical">Non-Technical</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group" style="text-align: left;">
+        <label>Service Status</label><br>
+        <select class="form-control" [(ngModel)]="serviceRequest.serviceStatus" [ngModelOptions]="{standalone: true}">
+          <option value="Pending">Pending</option>
+          <option value="Closed">Closed</option>
+        </select>
+      </div><br>
+      <a (click)="onSubmit()"><span></span>
+        <span></span>
+        <span></span>
+        <span></span>Submit</a>
+    </form>
+  </div>
+</div>

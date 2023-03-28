@@ -1,0 +1,23 @@
+<div class="login-box">
+  <h2>Login</h2>
+  <form [formGroup]="UserForm" >
+    <div class="user-box">
+      <input type="email"  formControlName="Email" required=""/> 
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" formControlName="Password" required=""/> 
+      <label>Password</label>
+    </div>
+    <a (click)="Login()" value="Login" >
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+    
+  </form>
+  <p class="small fw-bold mt-2 pt-1 mb-0"><a routerLink="../app-forgot-password">Forgot Password</a> | New user? <a routerLink="/register"
+    class="link-danger">Register</a></p>
+</div>

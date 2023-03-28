@@ -1,0 +1,119 @@
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <h4>{{title}}</h4>
+    <form class="d-flex" role="search">
+
+      <img class="userIcon" src="../../assets/img/user.png" alt="">
+      <button class="btn btn-dark" routerLink="/app-user-list">Edit User Details</button>
+      <button class="btn btn-dark" (click)="logout()">Logout</button>
+    </form>
+  </div>
+</nav>
+<div class="container">
+  <h2 id="tableheading">Service request list</h2>
+  <div *ngIf="servicerequest?.length > 0">
+
+    <table class=" table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Service Request Title</th>
+          <th>Description</th>
+          <th>Service type</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let serreq of servicerequest">
+          <td> {{serreq.id}}</td>
+          <td> {{serreq.serviceName}}</td>
+          <td> {{serreq.serviceDetails}}</td>
+          <td> {{serreq.serviceType}}</td>
+          <td> {{serreq.serviceStatus}}</td>
+          <td> {{serreq.date | slice:0:10}}</td>
+          <td>
+            <button (click)="updateServiceRequest(serreq.id)" id="actionBtn" class="btn btn-info">Edit
+              <i class="fa-solid fa-pen-to-square"></i></button>
+            <button (click)="deleteServiceRequest(serreq.id)" class="btn btn-warning">Delete&nbsp;<i
+                class="fa-solid fa-trash"></i></button>&nbsp;
+            <button (click)="closeServiceRequest(serreq.id)" class="btn btn-danger">Close&nbsp;<i
+                class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Button to trigger modal for adding service request-->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Service Request
+  </button>
+  <button class="btn btn-danger" id="filterButtons" (click)="getClosedServiceRequestList()">Closed Requests</button>
+  <button class="btn btn-warning" id="filterButtons" (click)="getPendningServiceRequestList()">Pending Requests</button>
+</div>
+
+
+
+
+<!--Modal for service request-->
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Service Request Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" style="text-align: left;">
+            <label>Service Request Title</label><br>
+            <input type="text" [(ngModel)]="serviceName" [ngModelOptions]="{standalone: true}" class="form-control"
+              placeholder="">
+
+          </div><br>
+
+
+          <div class="form-group" style="text-align: left;">
+            <label>Description</label><br>
+            <input type="text" [(ngModel)]="serviceDetails" [ngModelOptions]="{standalone: true}" class="form-control"
+              placeholder="">
+
+          </div><br>
+          <div class="form-group" style="text-align: left;">
+            <label>Service Type</label><br>
+            <select class="form-control" [(ngModel)]="serviceType" [ngModelOptions]="{standalone: true}">
+              <option value="">Select Service Type</option>
+              <option value="Software">Software</option>
+              <option value="Hardware">Hardware</option>
+              <option value="Non-Technical">Non-Technical</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group" style="text-align: left;">
+            <label>Status</label><br>
+            <select class="form-control" [(ngModel)]="serviceStatus" [ngModelOptions]="{standalone: true}">
+              <option default value="Pending">Pending</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div><br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addServiceRequestBtn()">Submit Service Request</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>const myModal = document.getElementById('myModal')
+  const myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })</script>

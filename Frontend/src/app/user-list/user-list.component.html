@@ -1,0 +1,56 @@
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <h4>{{title}}</h4>
+    <form class="d-flex" role="search">
+      <img class="userIcon" src="../../assets/img/user.png" alt="">
+      <button class="btn btn-dark" routerLink="/app-service-request-list">Service Requests</button>
+
+      <button class="btn btn-dark" (click)="logout()">Logout</button>
+    </form>
+  </div>
+</nav>
+<div class="container">
+  <h2 id="tableheading">Customers Details List</h2>
+  <div>
+
+    <table class=" table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact No</th>
+          <th>Contact Preference</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userdetails of user">
+          <td> {{userdetails.firstName}}</td>
+          <td> {{userdetails.lastName}}</td>
+          <td> {{userdetails.email}}</td>
+          <td> {{userdetails.contactNo}}</td>
+          <td> {{userdetails.contactPreference}}</td>
+          <td>{{userdetails.user_role}}</td>
+          <td> <button (click)="updateUser(userdetails.email)" id="actionBtn" class="btn btn-info">Edit
+              <i class="fa-solid fa-pen-to-square"></i></button>
+             </td>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Button to trigger modal for adding service request-->
+  <!-- Button trigger modal -->
+
+</div>
+
+<!--Modal for service request-->
+<script>const myModal = document.getElementById('myModal')
+  const myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })</script>
